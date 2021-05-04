@@ -26,3 +26,4 @@ type InitialStateType = {
     getProducts: () => void;
     getSingleProduct: (productId:number) => void;
 };
+
