@@ -6,7 +6,6 @@ interface CardProps {
   product: Product;
 }
 
-
 const SingleProductCard: React.FC<CardProps> = ({ product }) => {
     const {RoundDecimal} = useContext(GlobalContext);
 
