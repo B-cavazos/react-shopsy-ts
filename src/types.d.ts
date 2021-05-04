@@ -25,5 +25,6 @@ type InitialStateType = {
     product: Product | undefined;
     getProducts: () => void;
     getSingleProduct: (productId:number) => void;
+    RoundDecimal:(price:string)=>void;
 };
 
