@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useContext}  from 'react';
+import { GlobalContext } from '../context/GlobalContext';
+import {setTypeColor} from '../services';
 
 interface CardProps {
   product: Product;
 }
 
 const SingleProductCard: React.FC<CardProps> = ({ product }) => {
-  return (
+    const {RoundDecimal} = useContext(GlobalContext);
+
+    return (
     <div className='row'>
     <div className='col-sm-12 col-md-8 offset-md-2'>
       <div className='card'>
@@ -25,7 +29,7 @@ const SingleProductCard: React.FC<CardProps> = ({ product }) => {
               <h3 className='card-title'>
                 {product.title}
                 <div className=''>
-                  <small className='text-info'>${product.price}</small>
+                  <small className='text-info'>${RoundDecimal(product.price)}</small>
                 </div>
               </h3>
               {/* product details */}
@@ -33,7 +37,7 @@ const SingleProductCard: React.FC<CardProps> = ({ product }) => {
                 <h4>Description</h4>
                 <p>{product.description}</p>
                 <div>
-                  <span className='badge badge-warning'>
+                  <span className='badge text-white' style={{backgroundColor:setTypeColor(product.category)}}>
                     {product.category}
                   </span>
                 </div>

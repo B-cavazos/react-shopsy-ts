@@ -8,6 +8,7 @@ const initialState = {
   product: undefined,
   getProducts: () => {},
   getSingleProduct: () => {},
+  RoundDecimal:()=>{},
 };
 
 // Create our global reducer
@@ -65,6 +66,13 @@ export const GlobalProvider: React.FC = ({ children }) => {
     }
   };
 
+  // Functiion to round decimals
+  const RoundDecimal = (price:string)=>{
+    let num = +price;
+    let rounded = num.toFixed(2);
+    return rounded;
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -73,6 +81,7 @@ export const GlobalProvider: React.FC = ({ children }) => {
         product: state.product,
         getProducts,
         getSingleProduct,
+        RoundDecimal,
       }}>
       {children} {/* <AppRouter/> */}
     </GlobalContext.Provider>
