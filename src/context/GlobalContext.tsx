@@ -8,7 +8,8 @@ const initialState = {
   product: undefined,
   getProducts: () => {},
   getSingleProduct: () => {},
-  RoundDecimal:()=>{},
+  RoundDecimal:()=>0,
+  addToCart: () => {},
 };
 
 // Create our global reducer
@@ -28,10 +29,16 @@ const appReducer = (state: any, action: any) => {
   switch (action.type) {
     case 'GET_PRODUCTS':
       // when a case matches, the return will update the state for us
+      // ...state (take a copy), property: action.payload (and update this property)
       return { ...state, products: action.payload };
     case 'GET_SINGLE_PRODUCT':
       // when case matches, bind the payload to the product property in state
       return { ...state, product: action.payload };
+    case 'ADD_TO_CART':
+      //return copy of state 
+      //and in the cart propery, [ take a copy of the cart propery in state 
+      //then pass in new item (action.payload) ] 
+      return {...state, cart: [...state.cart, action.payload] };
     default:
       return state;
   }
@@ -66,6 +73,11 @@ export const GlobalProvider: React.FC = ({ children }) => {
     }
   };
 
+  const addToCart = (product: Product) =>{
+    //receive a product that that we then move into our cart
+    dispatch({type:"ADD_TO_CART", payload: product})
+  };
+
   // Functiion to round decimals
   const RoundDecimal = (price:string)=>{
     let num = +price;
@@ -82,6 +94,7 @@ export const GlobalProvider: React.FC = ({ children }) => {
         getProducts,
         getSingleProduct,
         RoundDecimal,
+        addToCart
       }}>
       {children} {/* <AppRouter/> */}
     </GlobalContext.Provider>

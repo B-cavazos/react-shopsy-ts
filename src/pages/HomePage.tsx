@@ -4,7 +4,7 @@ import { GlobalContext } from '../context/GlobalContext';
 import '../App.css';
 
 const HomePage = () => {
-  const { products, getProducts} = useContext(GlobalContext);
+  const {products, getProducts} = useContext(GlobalContext);
 
   useEffect(() => {
     getProducts();

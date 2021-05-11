@@ -8,7 +8,7 @@ interface CardProps {
 }
 
 const ProductCard: React.FC<CardProps> = ({ product }) => {
-  const {RoundDecimal} = useContext(GlobalContext);
+  const {RoundDecimal, addToCart} = useContext(GlobalContext);
 
   const history = useHistory();
   return (
@@ -37,7 +37,7 @@ const ProductCard: React.FC<CardProps> = ({ product }) => {
 
       {/* Add to Cart Button  */}
       <div className='card-footer'>
-        <button className='btn btn-block btn-primary'>Add To Cart</button>
+        <button className='btn btn-block btn-primary' onClick={()=> addToCart(product)}>Add To Cart</button>
       </div>
     </div>
   );
